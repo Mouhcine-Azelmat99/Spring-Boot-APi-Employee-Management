@@ -3,6 +3,7 @@ package com.mouhcine.SpringBootAPiEmployeeManagement.core.controller;
 import com.mouhcine.SpringBootAPiEmployeeManagement.core.bo.Employee;
 import com.mouhcine.SpringBootAPiEmployeeManagement.core.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,16 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
     IEmployeeService employeeService;
-    @GetMapping("/")
-    public String index(){
-        return "index";
-    }
+
+
     @GetMapping("employees")
+    @ResponseStatus(HttpStatus.OK)
     public List<Employee> getEmployees(){
         return employeeService.getEmployees();
     }
